@@ -1,5 +1,3 @@
-# Front-End_2024-2026
-Public site for Front-End_2024-2026 course at ITS ALTO ADRIATICO
 # Front End 2024-2026
 
 Questo è un progetto scolastico.
@@ -8,6 +6,7 @@ Questo è un progetto scolastico.
 
 - [Descrizione](#descrizione)
 - [Tecnologie Utilizzate](#tecnologie-utilizzate)
+- [Metodi Utilizzati](#metodi-utilizzati)
 - [Funzionalità](#funzionalità)
 - [Installazione](#installazione)
 - [Contribuire](#contribuire)
@@ -23,6 +22,21 @@ Questo sito web presenta una serie di card che mostrano informazioni di contatto
 - **CSS**: Stile e layout.
 - **JavaScript**: Interattività e gestione degli eventi.
 - **Bootstrap**: Framework CSS per un design migliore e responsive.
+
+## Metodi Utilizzati
+
+Di seguito sono elencati i metodi JavaScript utilizzati nel progetto, con link alla documentazione ufficiale:
+
+- **`document.addEventListener()`**: Aggiunge un gestore di eventi a un oggetto. Utilizzato per eseguire codice quando il DOM è completamente caricato. [Documentazione](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+  
+- **`document.createElement()`**: Crea un nuovo elemento HTML. Utilizzato per generare dinamicamente le card. [Documentazione](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+  
+- **`appendChild()`**: Aggiunge un nodo come ultimo figlio di un nodo. Utilizzato per costruire la gerarchia delle card. [Documentazione](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+
+- **`window.location.href`**: Consente di modificare l'URL corrente, utilizzato per inviare email tramite `mailto:`. [Documentazione](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
+
+- **`window.open()`**: Apre una nuova finestra del browser con l'URL specificato. Utilizzato per aprire PDF e GitHub. [Documentazione](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
+
 
 ## Funzionalità
 
