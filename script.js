@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
     cardData.forEach(data => {
         // Creazione del contenitore della card
         const card = document.createElement("div");
-        card.className = "col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3";
+        card.className = "col-12 col-sm-6 col-md-4 col-lg-3 col-custom-5";
 
         // Creazione dell'elemento card interna
         const cardInner = document.createElement("div");
-        cardInner.className = "card";
+        cardInner.className = "card p-3 shadow-sm";
 
         // Creazione dell'immagine
         const img = document.createElement("img");
