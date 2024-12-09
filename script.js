@@ -1,6 +1,6 @@
 // Funzione per contattare tramite email
-function contactEmail(cardNumber) {
-    window.location.href = `mailto:example@example.com?subject=Contact%20Card%20${cardNumber}`;
+function contactEmail(email) {
+    window.location.href = `mailto:${email}?subject=Contatto`;
 }
 
 function openPDF() {
