@@ -40,7 +40,6 @@ const cardData = [
     { numero: 25, nome: "Giovanni", cognome: "Zol", email: "giovanni.zol.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/25_Giovanni.jpg" }
 ];
 
-
 // Generazione dinamica delle card
 document.addEventListener("DOMContentLoaded", function() {
     const cardContainer = document.getElementById("card-container");
@@ -62,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Creazione del numero della card
         const numberDiv = document.createElement("div");
         numberDiv.className = "number";
-        numberDiv.textContent = `${data.numero}.`;
+        numberDiv.textContent = `${data.numero}`;
 
-        // Creazione del nome e cognome
+        // Creazione del nome e cognome con <br>
         const nameDiv = document.createElement("div");
         nameDiv.className = "name";
-        nameDiv.textContent = `${data.nome} ${data.cognome}`;
+        nameDiv.innerHTML = `${data.nome}<br>${data.cognome}`;
 
         // Creazione del bottone per contattare via email
         const button = document.createElement("button");
@@ -88,8 +87,3 @@ document.addEventListener("DOMContentLoaded", function() {
         cardContainer.appendChild(card);
     });
 });
-
-// Funzione per contattare tramite email con indirizzo specifico
-function contactEmail(email) {
-    window.location.href = `mailto:${email}?subject=Contact`;
-}
