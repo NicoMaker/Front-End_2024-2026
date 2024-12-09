@@ -4,7 +4,7 @@ function contactEmail(cardNumber) {
 }
 
 function openPDF() {
-    window.open("https://example.com/your-pdf-link", "_blank");
+    window.open("https://github.com/CammarataLudovico/Front-End_2024-2026/blob/main/FotoTessere.pdf", "_blank");
 }
 
 function openGit() {
