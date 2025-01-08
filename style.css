@@ -1,3 +1,18 @@
+@media print {
+    /* Nascondi tutti i bottoni */
+    .contact-btn,
+    .openPDF,
+    .openGIT {
+        display: none;
+    }
+
+    /* Nascondi il footer */
+    .footer {
+        display: none;
+    }
+}
+
+
 /* Header */
 header {
     background-color: #1a1a2e !important; /* Blu scuro elegante */
@@ -98,7 +113,7 @@ header {
 /* Layout personalizzato per la griglia delle card */
 @media (min-width: 1200px) {
     .col-custom-5 {
-        flex: 0 0 19%; /* Ogni card occupa il 22% della larghezza */
+        flex: 0 0 19%; /* Ogni card occupa il 19% della larghezza */
         max-width: 19%;
         margin-right: 1%;
     }
