@@ -1,89 +1,149 @@
-// Funzione per contattare tramite email
-function contactEmail(email) {
-    window.location.href = `mailto:${email}?subject=Contatto`;
+function contactEmail(nome, cognome) {
+  const email = `${nome.toLowerCase()}.${cognome.toLowerCase()}.24@stud.itsaltoadriatico.it`,
+    subject = `Contatto via mail di ${nome} ${cognome}`,
+    mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
+  window.location.href = mailtoLink;
 }
 
-function openPDF() {
-    window.open("https://github.com/CammarataLudovico/Front-End_2024-2026/blob/main/FotoTessere.pdf", "_blank");
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  const cardContainer = document.getElementById("card-container");
+  const generatePDFButton = document.getElementById("generatePDFButton");
 
-function openGit() {
-    window.open("https://github.com/CammarataLudovico/Front-End_2024-2026", "_blank");
-}
+  // Funzione per generare il PDF
+  generatePDFButton.addEventListener("click", () => {
+    generatePDF();
+  });
 
-// Array di oggetti con numero, nome, cognome, email e URL immagine
-const cardData = [
-    { numero: 1, nome: "Adrion", cognome: "Bytyqi", email: "adrion.bytyqi.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/1_Adrion.jpg" },
-    { numero: 2, nome: "Ludovico", cognome: "Cammarata", email: "ludovico.cammarata.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/2_Ludovico.jpg" },
-    { numero: 3, nome: "Damiano", cognome: "Castellarin", email: "damiano.castellarin.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/3_Damiano.jpg" },
-    { numero: 4, nome: "Matteo", cognome: "Celant", email: "matteo.celant.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/4_Matteo.jpg" },
-    { numero: 5, nome: "Damiano", cognome: "Da Ros", email: "damiano.daros.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/5_DamianoDaRos.jpg" },
-    { numero: 6, nome: "Samuele", cognome: "Drigo", email: "samuele.drigo.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/6_DrigoSamuele.jpg" },
-    { numero: 7, nome: "Sara", cognome: "Fnaiqi", email: "sara.fnaiqi.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/7_SaraFnaiqi.jpg"},
-    { numero: 8, nome: "Matteo", cognome: "Galante", email: "matteo.galante.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/8_MatteoGalante.jpg" },
-    { numero: 9, nome: "Aurora", cognome: "Gasparutti", email: "aurora.gasparutti.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/9_Aurora.jpg" },
-    { numero: 10, nome: "Nicolò", cognome: "Gobbo", email: "nicolo.gobbo.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/10_Nicolo.jpg" },
-    { numero: 11, nome: "Kawe", cognome: "Longon", email: "kawe.longon.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/11_Kawe.jpg" },
-    { numero: 12, nome: "Gaia", cognome: "Mantovani", email: "gaia.mantovani.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/12_Gaia.jpg" },
-    { numero: 13, nome: "Nicola", cognome: "Marano", email: "nicola.marano.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/13_Nicola.jpg" },
-    { numero: 14, nome: "Denis", cognome: "Mascherin", email: "denis.mascherin.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/14_Denis.jpg" },
-    { numero: 15, nome: "Zawadi Emilia", cognome: "Piccolo", email: "zawadiemilia.piccolo.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/15_Zawadi.jpg" },
-    { numero: 16, nome: "Marco", cognome: "Prevarin", email: "marco.prevarin.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/16_Prevarin_Marco.jpg" },
-    { numero: 17, nome: "Giulia", cognome: "Quaino", email: "giulia.quaino.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/17_GiuliaQuaino.jpg" },
-    { numero: 18, nome: "Valentina", cognome: "Rossi", email: "valentina.rossi.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/18_Valentina.jpeg" },
-    { numero: 19, nome: "Marco", cognome: "Segato", email: "marco.segato.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/19_MarcoSegato.jpg" },
-    { numero: 20, nome: "Brayan Camilo", cognome: "Serraino", email: "brayancamilo.serraino.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/20_Brayan.jpg" },
-    { numero: 21, nome: "Alessia", cognome: "Tolotti", email: "alessia.tolotti.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/21_AlessiaTolotti.jpg" },
-    { numero: 22, nome: "Luca", cognome: "Villalta", email: "luca.villalta.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/22_villalta_luca.jpg" },
-    { numero: 23, nome: "Emanuele", cognome: "Zanchetta", email: "emanuele.zanchetta.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/23_Emanuele.jpg" },
-    { numero: 24, nome: "Simone", cognome: "Zoccarato", email: "simone.zoccarato.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/24_Simone_Zoccarato.jpg" },
-    { numero: 25, nome: "Giovanni", cognome: "Zol", email: "giovanni.zol.24@stud.itsaltoadriatico.it", immagine: "./img/Stud_img/25_Giovanni.jpg" }
-];
+  try {
+    const response = await fetch("Studenti.json");
+    const cardData = await response.json();
 
-// Generazione dinamica delle card
-document.addEventListener("DOMContentLoaded", function() {
-    const cardContainer = document.getElementById("card-container");
-    
-    cardData.forEach(data => {
-        // Creazione del contenitore della card
-        const card = document.createElement("div");
-        card.className = "col-12 col-sm-6 col-md-4 col-lg-3 col-custom-5";
+    // Ordina gli studenti per cognome in ordine alfabetico
+    cardData.sort((a, b) => a.cognome.localeCompare(b.cognome));
 
-        // Creazione dell'elemento card interna
-        const cardInner = document.createElement("div");
-        cardInner.className = "card p-3 shadow-sm";
+    cardData.forEach((data, index) => {
+      // Creazione della card
+      const card = document.createElement("div"),
+        cardInner = document.createElement("div"),
+        img = document.createElement("img"),
+        numberDiv = document.createElement("div"),
+        nameDiv = document.createElement("div"),
+        button = document.createElement("button");
 
-        // Creazione dell'immagine
-        const img = document.createElement("img");
-        img.src = data.immagine;
-        img.alt = `Image ${data.numero}`;
+      card.className = "col-12 col-sm-6 col-md-4 col-lg-3 col-custom-5";
+      cardInner.className = "card p-3 shadow-sm";
 
-        // Creazione del numero della card
-        const numberDiv = document.createElement("div");
-        numberDiv.className = "number";
-        numberDiv.textContent = `${data.numero}`;
+      img.src = data.immagine;
+      img.alt = `Foto di ${data.nome} ${data.cognome}`;
+      img.loading = "lazy"; // Aggiunto lazy loading per migliorare le prestazioni
 
-        // Creazione del nome e cognome con <br>
-        const nameDiv = document.createElement("div");
-        nameDiv.className = "name";
-        nameDiv.innerHTML = `${data.nome}<br>${data.cognome}`;
+      numberDiv.className = "number";
+      numberDiv.textContent = `${index + 1}.`;
 
-        // Creazione del bottone per contattare via email
-        const button = document.createElement("button");
-        button.className = "btn btn-primary contact-btn";
-        button.textContent = "Invia Mail";
-        button.onclick = () => contactEmail(data.email);
+      nameDiv.className = "name";
+      nameDiv.innerHTML = `${data.nome} <br> ${data.cognome}`;
 
-        // Appendi gli elementi alla card interna
-        cardInner.appendChild(img);
-        cardInner.appendChild(numberDiv);
-        cardInner.appendChild(nameDiv);
-        cardInner.appendChild(button);
+      button.className = "btn contact-btn";
+      button.textContent = "Invia Mail";
+      button.onclick = () => contactEmail(data.nome, data.cognome);
 
-        // Appendi la card interna al contenitore della card
-        card.appendChild(cardInner);
+      cardInner.appendChild(img);
+      cardInner.appendChild(numberDiv);
+      cardInner.appendChild(nameDiv);
+      cardInner.appendChild(button);
 
-        // Appendi la card al contenitore principale
-        cardContainer.appendChild(card);
+      card.appendChild(cardInner);
+      cardContainer.appendChild(card);
     });
+  } catch (error) {
+    console.error("Errore nel caricamento dei dati JSON:", error);
+    cardContainer.innerHTML = `
+      <div class="col-12 text-center">
+        <div class="alert alert-danger">
+          Errore nel caricamento dei dati. Riprova più tardi.
+        </div>
+      </div>
+    `;
+  }
+
+  // Funzione per generare il PDF dinamicamente
+  async function generatePDF() {
+    try {
+      const response = await fetch("Studenti.json");
+      const studentiData = await response.json();
+
+      // Ordina gli studenti per cognome in ordine alfabetico
+      studentiData.sort((a, b) => a.cognome.localeCompare(b.cognome));
+
+      // Prepara il template per il PDF
+      const pdfTemplate = document.getElementById("pdf-template");
+      const pdfContent = pdfTemplate.querySelector(".pdf-content");
+
+      // Pulisci il contenuto precedente
+      pdfContent.innerHTML = "";
+
+      // Aggiungi le card al template PDF
+      studentiData.forEach((studente, index) => {
+        const pdfCard = document.createElement("div");
+        pdfCard.className = "pdf-card";
+
+        pdfCard.innerHTML = `
+          <img src="${studente.immagine}" alt="Foto di ${studente.nome} ${
+          studente.cognome
+        }">
+          <div class="number-name">${index + 1}. ${studente.nome} ${
+          studente.cognome
+        }</div>
+        `;
+
+        pdfContent.appendChild(pdfCard);
+      });
+
+      // Configura le opzioni per html2pdf
+      const options = {
+        margin: [3, 3, 3, 3], // Margini minimi [top, right, bottom, left]
+        filename: "Studenti_FrontEnd_2024-2026.pdf",
+        image: { type: "jpeg", quality: 0.9 },
+        html2canvas: {
+          scale: 1,
+          useCORS: true,
+          letterRendering: true,
+          logging: false,
+        },
+        jsPDF: {
+          unit: "mm",
+          format: "a4",
+          orientation: "landscape", // Orientamento orizzontale per più spazio
+          compress: true,
+        },
+        pagebreak: { mode: ["avoid-all"] }, // Evita interruzioni di pagina
+      };
+
+      // Genera il PDF
+      pdfTemplate.style.display = "block"; // Mostra il template per la generazione
+
+      if (typeof html2pdf !== "undefined") {
+        try {
+          await html2pdf().set(options).from(pdfTemplate).save();
+        } catch (pdfError) {
+          console.error("Errore durante la generazione del PDF:", pdfError);
+          alert(
+            "Si è verificato un errore durante la generazione del PDF. Controlla la console per maggiori dettagli."
+          );
+        }
+      } else {
+        console.error(
+          "html2pdf is not defined. Make sure to include the library."
+        );
+        alert("html2pdf library is missing. PDF generation will fail.");
+      }
+      pdfTemplate.style.display = "none"; // Nascondi il template dopo la generazione
+    } catch (error) {
+      console.error("Errore nella generazione del PDF:", error);
+      alert(
+        "Si è verificato un errore durante la generazione del PDF. Riprova più tardi."
+      );
+    }
+  }
 });
